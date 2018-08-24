@@ -29,15 +29,18 @@ Gamepad.prototype.setAng1 = function(x,y) {
     this.ang = [this.ang[0],this.ang[1],x,y];
     return this;
 }
-Gamepad.prototype.send = function() {
-    var array = this.binarySerializer(this.getDsl());
-    this.sender.send(array);
-    return this;
-}
 Gamepad.prototype.getDsl = function() {
   var dsl = [{"dpad":this.dpad, "btn":this.btn, "ang":this.ang, "dur":-1}];
 //  console.log(dsl);
   return dsl;
+}
+Gamepad.prototype.send = function() {
+    return this.sendDsl(this.getDsl());
+}
+Gamepad.prototype.sendDsl = function(dsl) {
+    var array = this.binarySerializer(dsl);
+    this.sender.send(array);
+    return this;
 }
 
 Gamepad.prototype.function binarySerializer(gc_sentence) {
