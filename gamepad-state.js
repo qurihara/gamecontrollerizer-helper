@@ -47,7 +47,7 @@ Gamepad.prototype.binarySerializer = function(gc_sentence) {
   //            try {
   var binary_sentence = [];
   for (let gc_word of gc_sentence)
-  binary_sentence = binary_sentence.concat(Array.from(toBinGamepad(gc_word)));
+  binary_sentence = binary_sentence.concat(Array.from(this.toBinGamepad(gc_word)));
   return binary_sentence;
   //            } catch (e) {
   //            }
