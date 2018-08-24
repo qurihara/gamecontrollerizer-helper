@@ -1,0 +1,396 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://obniz.io/js/jquery-3.2.1.min.js"></script>
+  <script src="https://unpkg.com/obniz@1.9.4/obniz.js" crossorigin="anonymous"></script>
+  <script src="https://rawgit.com/qurihara/gamecontrollerizer-helper/master/gamepad-state.js" crossorigin="anonymous"></script>
+  <script src="https://rawgit.com/qurihara/gamecontrollerizer-helper/master/binaryserializer.js" crossorigin="anonymous"></script>
+</head>
+<body style="-webkit-touch-callout:none;-webkit-user-select:none;">
+
+<div id="obniz-debug"></div>
+<h3>GameControllerizer with obniz</h3>
+<input id="dpad" type="radio" name="tilt" value="dpad" >dpad
+<input id="ang0" type="radio" name="tilt" value="ang0" checked>ang0
+<input id="ang1" type="radio" name="tilt" value="ang1">ang1
+<br>
+<input id="portlait" type="radio" name="direction" value="portlait" checked >portlait
+<input id="landscape" type="radio" name="direction" value="landscape">landscape
+<br>
+<button id="b0" style="width:150px;height:150px">00</button>
+<button id="b1" style="width:150px;height:150px">01</button>
+<br>
+<button id="b2" style="width:150px;height:150px">02</button>
+<button id="b3" style="width:150px;height:150px">03</button>
+<br>
+<button id="b4" style="width:150px;height:150px">04</button>
+<button id="b5" style="width:150px;height:150px">05</button>
+<br>
+<button id="b6" style="width:150px;height:150px">06</button>
+<button id="b7" style="width:150px;height:150px">07</button>
+<br>
+<button id="b8" style="width:150px;height:150px">08</button>
+<button id="b9" style="width:150px;height:150px">09</button>
+<br>
+<button id="b10" style="width:150px;height:150px">10</button>
+<button id="b11" style="width:150px;height:150px">11</button>
+<br>
+<button id="b12" style="width:150px;height:150px">12</button>
+<button id="b13" style="width:150px;height:150px">13</button>
+<br>
+<button id="b14" style="width:150px;height:150px">14</button>
+<button id="b15" style="width:150px;height:150px">15</button>
+<br>
+<button id="up" style="width:150px;height:150px">up</button>
+<br>
+<button id="left" style="width:150px;height:150px">left</button>
+<button id="right" style="width:150px;height:150px">right</button>
+<br>
+<button id="down" style="width:150px;height:150px">down</button>
+<br>
+<div id="ori"></div>
+
+<!--
+<div id="print"></div>
+-->
+
+<script>
+
+var gamepad;
+
+var WS_CLIENTS = {};
+var WS_HOST = null;
+var WS_PORT = null;
+const node_red_server = "xxx.net";
+const port = 80;//1880
+
+var obniz = new Obniz("xxxx-xxxx");
+
+function send(dsl){
+  var array = binarySerializer(dsl);
+  obniz.uart0.send(array);
+}
+var state = '';
+function c_send(s,dsl){
+  if (state !== s){
+    send(dsl);
+    state = s;
+    obniz.display.clear();
+    obniz.display.print(s);
+  }
+}
+
+const th = 30;
+var pax =0, pay = 0;
+function deviceorientationHandler(event) {
+      let beta = event.beta;// X軸  -90 up +90 down
+      let gamma = event.gamma;// Y軸 -90 left +90 right
+      //let alpha = event.alpha;// Z軸
+      //$('#ori').text("beta: " + beta + ", gamma: " + gamma + ", alpha: " + alpha);
+      if ($('#landscape').prop('checked')){
+        let d = beta;
+        beta = gamma;
+        gamma = -d;
+      }
+
+      if ($('#dpad').prop('checked')){
+        if (beta < -th){
+          if(gamma < -th){
+            //up left
+            gamepad.setDpad(7).send();
+//            c_send('up left',[{"dpad":[7], "btn":[], "ang":[0,0,0,0], "dur":-1}]);
+          } else if (gamma > th){
+            // up right
+            gamepad.setDpad(9).send();
+//            c_send('up right',[{"dpad":[9], "btn":[], "ang":[0,0,0,0], "dur":-1}]);
+          }else{
+            // up
+            gamepad.setDpad(8).send();
+//            c_send('up',[{"dpad":[8], "btn":[], "ang":[0,0,0,0], "dur":-1}]);
+          }
+        } else if (beta > th){
+          if(gamma < -th){
+            //down left
+            gamepad.setDpad(1).send();
+//            c_send('down left',[{"dpad":[1], "btn":[], "ang":[0,0,0,0], "dur":-1}]);
+          } else if (gamma > th){
+            // down right
+            gamepad.setDpad(3).send();
+//            c_send('down right',[{"dpad":[3], "btn":[], "ang":[0,0,0,0], "dur":-1}]);
+          } else{
+            //down
+            gamepad.setDpad(2).send();
+//            c_send('down',[{"dpad":[2], "btn":[], "ang":[0,0,0,0], "dur":-1}]);
+          }
+        } else if(gamma < -th){
+            //left
+            gamepad.setDpad(4).send();
+//            c_send('left',[{"dpad":[4], "btn":[], "ang":[0,0,0,0], "dur":-1}]);
+        } else if (gamma > th){
+            //right
+            gamepad.setDpad(6).send();
+//            c_send('right',[{"dpad":[6], "btn":[], "ang":[0,0,0,0], "dur":-1}]);
+        }else{
+            //neutral
+            gamepad.setDpad(5).send();
+//            c_send('neutral',[{"dpad":[5], "btn":[], "ang":[0,0,0,0], "dur":2}]);
+        }
+      }else {
+        var ay = Math.floor(beta/90*127);
+        var ax = Math.floor(gamma/90*127);
+        if (ax !== pax || ay !== pay){
+          if ($('#ang0').prop('checked')){
+            gamepad.setAng0(ax,ay).send();
+//            send([{"dpad":[5], "btn":[], "ang":[ax,ay,0,0], "dur":-1}]);
+          }else if ($('#ang1').prop('checked')){
+            gamepad.setAng1(ax,ay).send();
+//            send([{"dpad":[5], "btn":[], "ang":[0,0,ax,ay], "dur":-1}]);
+          }
+          pax = ax;
+          pay = ay;
+        }
+      }
+}
+
+obniz.onconnect = async function () {
+  obniz.display.clear();
+  obniz.display.print("Game");
+  obniz.display.print("Controllerizer");
+
+  obniz.switch.onchange = function(state) {
+//    $('#print').text(state);
+//    const nrUrl = `http://${tWsHost}:${tWsPort}`;
+//	obniz.display.qr(nrUrl,"L");
+    send([{"dpad":[5], "btn":[8,9], "ang":[0,0,0,0], "dur":2}]);
+  }
+
+  gamepad = new Gamepad(obniz.uart0);
+
+  $('#left').bind('touchstart',function () {
+//  $('#left').mousedown(function () {
+      gamepad.setDpad(4).send();
+  });
+  $('#left').bind('touchend',function () {
+//  $('#left').mouseup(function () {
+      gamepad.setDpad(5).send();
+  });
+  $('#up').bind('touchstart',function () {
+//  $('#up').mousedown(function () {
+      gamepad.setDpad(8).send();
+  });
+  $('#up').bind('touchend',function () {
+//  $('#up').mouseup(function () {
+      gamepad.setDpad(5).send();
+  });
+  $('#right').bind('touchstart',function () {
+//  $('#right').mousedown(function () {
+      gamepad.setDpad(6).send();
+  });
+  $('#right').bind('touchend',function () {
+//  $('#right').mouseup(function () {
+      gamepad.setDpad(5).send();
+  });
+  $('#down').bind('touchstart',function () {
+//  $('#down').mousedown(function () {
+      gamepad.setDpad(2).send();
+  });
+  $('#down').bind('touchend',function () {
+//  $('#down').mouseup(function () {
+      gamepad.setDpad(5).send();
+  });
+
+  $('#b0').bind('touchstart',function () {
+//  $('#b0').mousedown(function () {
+//      send([{"dpad":[5], "btn":[0], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(0).send();
+  });
+  $('#b0').bind('touchend',function () {
+//  $('#b0').mouseup(function () {
+      gamepad.unsetBtn(0).send();
+  });
+  $('#b1').bind('touchstart',function () {
+//  $('#b1').mousedown(function () {
+//      send([{"dpad":[5], "btn":[1], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(1).send();
+  });
+  $('#b1').bind('touchend',function () {
+//  $('#b1').mouseup(function () {
+      gamepad.unsetBtn(1).send();
+  });
+  $('#b2').bind('touchstart',function () {
+//  $('#b2').mousedown(function () {
+//      send([{"dpad":[5], "btn":[2], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(2).send();
+  });
+  $('#b2').bind('touchend',function () {
+//  $('#b2').mouseup(function () {
+      gamepad.unsetBtn(2).send();
+  });
+  $('#b3').bind('touchstart',function () {
+//      send([{"dpad":[5], "btn":[3], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(3).send();
+  });
+  $('#b3').bind('touchend',function () {
+//  $('#b3').bind('touchend',function () {
+    gamepad.unsetBtn(3).send();
+  });
+  $('#b4').bind('touchstart',function () {
+//  $('#b4').mousedown(function () {
+//      send([{"dpad":[5], "btn":[4], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(4).send();
+  });
+  $('#b4').bind('touchend',function () {
+//  $('#b4').mouseup(function () {
+      gamepad.unsetBtn(4).send();
+  });
+  $('#b5').bind('touchstart',function () {
+//  $('#b5').mousedown(function () {
+//      send([{"dpad":[5], "btn":[5], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(5).send();
+  });
+  $('#b5').bind('touchend',function () {
+//  $('#b5').mouseup(function () {
+      gamepad.unsetBtn(5).send();
+  });
+  $('#b6').bind('touchstart',function () {
+//  $('#b6').mousedown(function () {
+//      send([{"dpad":[5], "btn":[6], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(6).send();
+  });
+  $('#b6').bind('touchend',function () {
+//  $('#b6').mouseup(function () {
+      gamepad.unsetBtn().send();
+  });
+  $('#b7').bind('touchstart',function () {
+//  $('#b7').mousedown(function () {
+//      send([{"dpad":[5], "btn":[7], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(7).send();
+  })
+  $('#b7').bind('touchend',function () {
+//  $('#b7').mouseup(function () {
+      gamepad.unsetBtn(7).send();
+  });
+  $('#b8').bind('touchstart',function () {
+//  $('#b8').mousedown(function () {
+//      send([{"dpad":[5], "btn":[8], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(8).send();
+  });
+  $('#b8').bind('touchend',function () {
+//  $('#b8').mouseup(function () {
+      gamepad.unsetBtn(8).send();
+  });
+  $('#b9').bind('touchstart',function () {
+//  $('#b9').mousedown(function () {
+//      send([{"dpad":[5], "btn":[9], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(9).send();
+  });
+  $('#b9').bind('touchend',function () {
+//  $('#b9').mouseup(function () {
+      gamepad.unsetBtn(9).send();
+  });
+  $('#b10').bind('touchstart',function () {
+//  $('#b10').mousedown(function () {
+//      send([{"dpad":[5], "btn":[10], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(10).send();
+  });
+  $('#b10').bind('touchend',function () {
+//  $('#b10').mouseup(function () {
+      gamepad.unsetBtn(10).send();
+  });
+  $('#b11').bind('touchstart',function () {
+//  $('#b11').mousedown(function () {
+//      send([{"dpad":[5], "btn":[11], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(11).send();
+  });
+  $('#b11').bind('touchend',function () {
+//  $('#b11').mouseup(function () {
+      gamepad.unsetBtn(11).send();
+  });
+  $('#b12').bind('touchstart',function () {
+//  $('#b12').mousedown(function () {
+//      send([{"dpad":[5], "btn":[12], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn([12]).send();
+  });
+  $('#b12').bind('touchend',function () {
+//  $('#b12').mouseup(function () {
+      gamepad.unsetBtn(12).send();
+  });
+  $('#b13').bind('touchstart',function () {
+//  $('#b13').mousedown(function () {
+//      send([{"dpad":[5], "btn":[13], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(13).send();
+  });
+  $('#b13').bind('touchend',function () {
+//  $('#b13').mouseup(function () {
+      gamepad.unsetBtn(13).send();
+  });
+  $('#b14').bind('touchstart',function () {
+//  $('#b14').mousedown(function () {
+//      send([{"dpad":[5], "btn":[14], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(14).send();
+  });
+  $('#b14').bind('touchend',function () {
+//  $('#b14').mouseup(function () {
+      gamepad.unsetBtn(14).send();
+  });
+  $('#b15').bind('touchstart',function () {
+//  $('#b15').mousedown(function () {
+//      send([{"dpad":[5], "btn":[15], "ang":[0,0,0,0], "dur":2}]);
+      gamepad.setBtn(15).send();
+  });
+  $('#b15').bind('touchend',function () {
+//  $('#b15').mouseup(function () {
+      gamepad.unsetBtn(15).send();
+  });
+
+    // Create WebSocket clients
+    const tWsHost = getQueryParam("wshost", node_red_server);
+    const tWsPort = getQueryParam("wsport", port);
+    const tWsUrl = `ws://${tWsHost}:${tWsPort}`;
+    console.info("Websocket host url = " +  tWsUrl);
+
+//    WS_CLIENTS["gamepad"] = createWsClient(tWsUrl, "dev/gamepad");
+//    WS_CLIENTS["mouse"] = createWsClient(tWsUrl, "dev/mouse");
+//    WS_CLIENTS["keyboard"] = createWsClient(tWsUrl, "dev/keyboard");
+
+    WS_CLIENTS["gamepad"] = createWsClient(tWsUrl, "gamepad");
+//    WS_CLIENTS["mouse"] = createWsClient(tWsUrl, "mouse");
+//    WS_CLIENTS["keyboard"] = createWsClient(tWsUrl, "keyboard");
+
+    var usb = obniz.wired("USB" , {gnd:3, vcc:4} );
+    usb.on();
+    obniz.uart0.start({tx: 1, rx: 0, baud:9600, bits:8  });
+
+    window.addEventListener("deviceorientation", deviceorientationHandler);
+}
+
+function getQueryParam(aQuery, aDefault){
+    const tUrlParams = new URLSearchParams(window.location.search);
+    return (tUrlParams.has(aQuery)) ? tUrlParams.get(aQuery) : aDefault;
+}
+function createWsClient(aUrl, aDev){
+    var tClients = null;
+    tClient = new WebSocket(`${aUrl}/${aDev}`);
+    tClient.onopen = function(e){
+        console.info(`[${aDev}] is online`)
+    };
+    tClient.onerror = function(e){
+        console.info(`[${aDev}] is offline`)
+    };
+	tClient.onmessage = function ( event ) {
+      if (event && event.data) {
+      		console.log(event.data);
+        	var json = JSON.parse(event.data);
+        	var ar = binarySerializer(json);
+        	obniz.uart0.send(ar);
+      }
+	}
+    return tClient;
+}
+
+
+
+</script>
+</body>
+</html>
