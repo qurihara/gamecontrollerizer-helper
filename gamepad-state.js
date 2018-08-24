@@ -43,7 +43,7 @@ Gamepad.prototype.sendDsl = function(dsl) {
     return this;
 }
 
-Gamepad.prototype.function binarySerializer(gc_sentence) {
+Gamepad.prototype.binarySerializer = function(gc_sentence) {
   //            try {
   var binary_sentence = [];
   for (let gc_word of gc_sentence)
@@ -52,7 +52,7 @@ Gamepad.prototype.function binarySerializer(gc_sentence) {
   //            } catch (e) {
   //            }
 }
-Gamepad.prototype.function toBinGamepad(c) {
+Gamepad.prototype.toBinGamepad = function(c) {
   var btn = 0x000;
   for (let i=0; i<c.btn.length; i++)
   btn |= (0x001<<c.btn[i]);
