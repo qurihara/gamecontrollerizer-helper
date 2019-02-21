@@ -15,7 +15,7 @@
 　-ソフトウェア  
 　　-好きなゲーム（ゲームパッドで動くもの）  
   
--※macでもプログラミングはできます。しかしmacにはゲームパッドの概念がないので、ゲームパッドをキーボード入力に変換するもの https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。  
+-※macでもプログラミングはできます。しかしmacにはゲームパッドの概念がないので、ゲームパッドをキーボード入力に変換するもの   https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。  
 -※USBコネクタが１つしかないPCの場合、micro:bitにプログラムを書き込みたいときと、ゲームコントローラとして遊びたいときでUSBケーブルを選んで抜き差しすれば大丈夫です。  
 
 ## 接続
@@ -25,12 +25,12 @@ PC --> USB --> micro:bit --> micro:bit Groveシールド --> Groveコネクタ�
 
 ## micro:bitについて
 micro:bitのプログラミングやダウンロードの仕方が全くわからない方は、以下を見てください。  
-https://microbit.org/ja/guide/quick/
+https://microbit.org/ja/guide/quick/  
 以下、micro:bitのプログラミングとダウンロードの方法は最低限理解した前提で進めます。  
 
 ## 最初のGameControllerizerサンプル
-以下のリンクを開いてください。  
-https://makecode.microbit.org/_CYE3rLfxk9ro
+以下のリンクを開いてください。    
+https://makecode.microbit.org/_CYE3rLfxk9ro  
 基本的には、このようにmicro:bitの通常のプログラミングの中に、GameControllerizer独自のブロックたちを組み込むことでゲームコントローラのプログラミングを進めていきます。簡単ですね！  
 
 「編集」を押してください。このサンプルプログラムを、自分のプログラムとしてコピーして編集できるようになります。
@@ -41,7 +41,7 @@ https://makecode.microbit.org/_CYE3rLfxk9ro
 プログラムと、プログラミングのための環境(makecode)を見てください。画面中央左寄りに様々なプログラミングの部品のリストがありますが、「GameControllerizer」という項目がありますね。ここがGameControllerizer独自のブロックです。現時点で２ページぶんあり、「その他」にも重要なブロックがたくさんありますのでお見逃しなく！
 
 【参考：最初は読まなくて良い】  
-このGameControllerizer関連ブロックの項目は、「拡張機能」というmicro:bitのしくみでつくられており、通常のmicro:bitプログラミングでは最初からは存在しません。今回のようにサンプルプログラムを「編集」ボタンにより自分のプログラムとしてコピーすれば使えるようになりますし、１からプログラミングしたい人は、エディタ画面の右上の歯車マークをクリックし、「拡張機能」の中で以下のURLをタイプすると、組み込めるようになります。  
+このGameControllerizer関連ブロックの項目は、「拡張機能」というmicro:bitのしくみでつくられており、通常のmicro:bitプログラミングでは最初からは存在しません。今回のようにサンプルプログラムを「編集」ボタンにより自分のプログラムとしてコピーすれば使えるようになりますし、１からプログラミングしたい人は、エディタ画面の右上の歯車マークをクリックし、「拡張機能」の中で以下のURLをタイプすると、組み込めるようになります。    
 https://github.com/GameControllerizer/pxt-gamecontrollerizer.git
 
 ## プログラミングを見てみよう
@@ -98,13 +98,13 @@ GameControllerizerは0から11まで番号のついたボタンを扱えます�
 さあ、ポンコツコントローラに対して、まず皆さんは以下のことがやりたいはずです。どうすればできるでしょうか。考えてみましょう
 -左右どちらにも動かない「止まっている」状態を作りたい
 -ボタンを追加したい
-一応正解例のリンクも載せておきます。
-正解例：https://makecode.microbit.org/38039-59218-40797-54742
+一応正解例のリンクも載せておきます。  
+正解例：https://makecode.microbit.org/38039-59218-40797-54742  
 ちなみに、micro:bitにボタンは２つしかありませんが、「P1をタッチ」「P2をタッチ」を使えば、４ボタンまではすぐに増やせますね。
 
 次にやりたいのは、以下のようなことでしょうか。
 -アナログスティックを使いたい
--ボタンの「押しっぱなし」を実現したい
+-ボタンの「押しっぱなし」を実現したい  
 https://makecode.microbit.org/_KvAbcKLstdqe
 
 アナログスティックは(0,0)をニュートラル状態として、x軸y軸ともに-127~127の値で傾きを指示します。
@@ -118,13 +118,13 @@ https://makecode.microbit.org/_KvAbcKLstdqe
 
 -（１）micro:bitのLED表示は「遅い」
 以下の2つを比べてみてください。
--LED表示とGameControllerizer指示が直列につないであるもの http://xx.com
--LED表示とGameControllerizer指示が並列につないであるもの http://xx.com
+-LED表示とGameControllerizer指示が直列につないであるもの http://xx.com  
+-LED表示とGameControllerizer指示が並列につないであるもの http://xx.com  
 後者のほうがずっと反応が早いですよね！micro:bitのLED表示は、完了まで時間がかかるということです。LEDを使いたい場合は、処理が遅くならないよう注意しましょう。
 
 -（２−１）「ボタンが押されなくなったとき」がない！
 現在プログラミングに使っているmakecode.microbit.orgバージョン：1.2.13では、「Xボタンが押されたとき」というブロックはあるのに、「Xボタンが押されなくなったとき」というブロックがありません。ボタンの「押しっぱなし」を実現するために、「ずっと」のループの中でボタンの状態を検出し、それに対応した指示を出すようにしました。アナログスティックスティックについても、microbitの傾きを加速度センサで検出することを毎回のループで行っています。
-https://makecode.microbit.org/_KvAbcKLstdqe
+https://makecode.microbit.org/_KvAbcKLstdqe  
 
 これで万事解決のようですが・・実は少し問題があります。
 
@@ -136,7 +136,7 @@ https://makecode.microbit.org/_KvAbcKLstdqe
 実際に動作させてみると、GameControllerizerの基板上のオレンジLEDが激しく点滅していることがわかると思います。これはつまり、ものすごい速さで「ずっと」のループが繰り返されて、GameControllerizerへの操作指示が高速に出ていることを意味しています。実はこれ、かなり「ギリギリ動いている」という状態なんです。
 GameControllerizerは、操作指示が大量に送りつけられると、処理が間に合わなくなったり遅れたりしてしまいます。
 以下のコードを試してみてください。
- http://xx.com
+ http://xx.com  
 いろいろな「ずっと」のループがあり、たくさんの情報を並列に処理していますが、常にたくさんの指示をGameControllerizerに送りつけているので、処理が間に合わず「もっさり」してしまっています。
 これに対処するには、簡単な方法としっかりやる方法の２通りがあります。
 
@@ -158,7 +158,7 @@ GameControllerizerのブロックに「Xフレーム待つ」というものが�
 ##無線通信したい
 micro:bitが複数あれば、無線通信できるので手作りゲームコントローラ自体を無線化できますし、micro:bitの少ないボタンやセンサ数を増強して、より豊かなゲーム制御ができるようになります。
 以下はswitch-educationが公開している、micro:bit 2つを用いたラジコンカーの作例ビデオです。
-https://www.youtube.com/watch?v=KQ2IDCQli7A&feature=youtu.be
+https://www.youtube.com/watch?v=KQ2IDCQli7A&feature=youtu.be  
 ラジコンカーのコントローラは、そのままマリオカートなどのコントローラとして活用できますね。送信側と受信側の２つのプログラムがありますが、送信側はそのままで、受信側を少し改造し、モーターへの指示の部分をGameControllerizerへの指示に変えれば、無線ゲームコントローラの出来上がりです！
 
 ##お役立ちリンク：
