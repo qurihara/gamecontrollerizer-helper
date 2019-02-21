@@ -2,23 +2,23 @@
 
 それではGameControllerizerをmicro:bitで遊んでいきましょう。
 
-##準備するもの
-　・パソコン
-　　・Windows PC※（USBコネクタが２つ以上あるものがよいです※）
-　・ハードウェア
-　　・GameControllerizer基板
-　　・Groveコネクタケーブル
-　　・micro:bit
-　　・micro:bit Groveシールド
-　　・USBケーブル（PCとmicro:bitをつなぐ。micro:bitに給電し、プログラムを書き込むためのもの。）
-　　・USBケーブル（PCとGameControllerizerをつなぐ。ゲームコントローラとしてPCに操作指示を送るためのもの。）
-　・ソフトウェア
-　　・好きなゲーム（ゲームパッドで動くもの）
+## 準備するもの
+　-パソコン  
+　　-Windows PC※（USBコネクタが２つ以上あるものがよいです※）  
+　-ハードウェア  
+　　-GameControllerizer基板  
+　　-Groveコネクタケーブル  
+　　-micro:bit  
+　　-micro:bit Groveシールド  
+　　-USBケーブル（PCとmicro:bitをつなぐ。micro:bitに給電し、プログラムを書き込むためのもの。）  
+　　USBケーブル（PCとGameControllerizerをつなぐ。ゲームコントローラとしてPCに操作指示を送るためのもの。）  
+　-ソフトウェア  
+　　-好きなゲーム（ゲームパッドで動くもの）  
   
-※macでもプログラミングはできます。しかしmacにはゲームパッドの概念がないので、ゲームパッドをキーボード入力に変換するもの https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。
-※USBコネクタが１つしかないPCの場合、micro:bitにプログラムを書き込みたいときと、ゲームコントローラとして遊びたいときでUSBケーブルを選んで抜き差しすれば大丈夫です。
+※macでもプログラミングはできます。しかしmacにはゲームパッドの概念がないので、ゲームパッドをキーボード入力に変換するもの https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。  
+※USBコネクタが１つしかないPCの場合、micro:bitにプログラムを書き込みたいときと、ゲームコントローラとして遊びたいときでUSBケーブルを選んで抜き差しすれば大丈夫です。  
 
-##接続
+## 接続
 まず図のようにハードウェアを接続します。
 PC --> USB --> micro:bit --> micro:bit Groveシールド --> Groveコネクタケーブル（P0/P14へ接続） --> GameControllerizer基板 --> USBケーブル --> PC
 
