@@ -68,35 +68,21 @@ https://makecode.microbit.org/_CYE3rLfxk9ro
 ちょっと面倒だけど必ず考えなければならないのが、ボタンの対応づけです。
 GameControllerizerは0から11まで番号のついたボタンを扱えますが、何番のボタンがゲーム機のどのボタンに対応するかは、ゲーム機ごとに違います。以下によく用いられるxboxとNintendo Switchの対応表を書きますので、参考にしてください。わからなくても実際にゲーム機とつないで、一つ一つボタンを試してみれば、調べることができますね。
 
-| 番号 |    xboxボタン |
-----|----
-| 0 |    left bumper |
-| 1 |    right bumper |
-| 2 |    left trigger |
-| 3 |    right trigger |
-| 4 |    back |
-| 5 |    start |
-| 6 |    left stick |
-| 7 |    right stick |
-| 8 |    X |
-| 9 |    A |
-| 10 |    B |
-| 11 |    Y |
+| ボタン番号 |    xboxボタン | Switchボタン |
+----|----|----
+| 0 |    left bumper | Y |
+| 1 |    right bumper | X |
+| 2 |    left trigger | ZL |
+| 3 |    right trigger | ZR |
+| 4 |    back | L |
+| 5 |    start | R |
+| 6 |    left stick | L stick |
+| 7 |    right stick | R stick |
+| 8 |    X | + |
+| 9 |    A | - |
+| 10 |    B | B |
+| 11 |    Y | A |
 
-| 番号 |    Switchボタン |
-----|----
-| 0 |    Y |
-| 1 |    X |
-| 2 |    ZL |
-| 3 |    ZR |
-| 4 |    L |
-| 5 |    R |
-| 6 |    L stick |
-| 7 |    R stick |
-| 8 |    + |
-| 9 |    - |
-| 10 |    B |
-| 11 |    A |
 
 さあ、ポンコツコントローラに対して、まず皆さんは以下のことがやりたいはずです。どうすればできるでしょうか。考えてみましょう
 - 左右どちらにも動かない「止まっている」状態を作りたい
@@ -138,7 +124,7 @@ https://makecode.microbit.org/_KvAbcKLstdqe
 アナログスティックとボタンの「押しっぱなし」の例では、「ずっと」のループの中でGameControllerizerへの指示を書いていました。
 実際に動作させてみると、GameControllerizerの基板上のオレンジLEDが激しく点滅していることがわかると思います。これはつまり、ものすごい速さで「ずっと」のループが繰り返されて、GameControllerizerへの操作指示が高速に出ていることを意味しています。実はこれ、かなり「ギリギリ動いている」という状態なんです。
 GameControllerizerは、操作指示が大量に送りつけられると、処理が間に合わなくなったり遅れたりしてしまいます。
-以下のコードを試してみてください。
+以下のコードを試してみてください。  
  http://xx.com  
 いろいろな「ずっと」のループがあり、たくさんの情報を並列に処理していますが、常にたくさんの指示をGameControllerizerに送りつけているので、処理が間に合わず「もっさり」してしまっています。
 これに対処するには、簡単な方法としっかりやる方法の２通りがあります。
