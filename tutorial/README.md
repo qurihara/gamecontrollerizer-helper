@@ -72,6 +72,7 @@ https://github.com/GameControllerizer/pxt-gamecontrollerizer.git
 GameControllerizerは0から11まで番号のついたボタンを扱えますが、何番のボタンがゲーム機のどのボタンに対応するかは、ゲーム機ごとに違います。以下によく用いられるxboxとNintendo Switchの対応表を書きますので、参考にしてください。わからなくても実際にゲーム機とつないで、一つ一つボタンを試してみれば、調べることができますね。
 
 | 番号 |    xboxボタン |
+----|----
 | 0 |    left bumper |
 | 1 |    right bumper |
 | 2 |    left trigger |
