@@ -71,33 +71,33 @@ https://github.com/GameControllerizer/pxt-gamecontrollerizer.git
 ちょっと面倒だけど必ず考えなければならないのが、ボタンの対応づけです。
 GameControllerizerは0から11まで番号のついたボタンを扱えますが、何番のボタンがゲーム機のどのボタンに対応するかは、ゲーム機ごとに違います。以下によく用いられるxboxとNintendo Switchの対応表を書きますので、参考にしてください。わからなくても実際にゲーム機とつないで、一つ一つボタンを試してみれば、調べることができますね。
 
-番号    xboxボタン
-0    left bumper
-1    right bumper
-2    left trigger
-3    right trigger
-4    back
-5    start
-6    left stick
-7    right stick
-8    X
-9    A
-10    B
-11    Y
+| 番号 |    xboxボタン |
+| 0 |    left bumper |
+| 1 |    right bumper |
+| 2 |    left trigger |
+| 3 |    right trigger |
+| 4 |    back |
+| 5 |    start |
+| 6 |    left stick |
+| 7 |    right stick |
+| 8 |    X |
+| 9 |    A |
+| 10 |    B |
+| 11 |    Y |
 
-番号    Switchボタン
-0    Y
-1    X
-2    ZL
-3    ZR
-4    L
-5    R
-6    L stick
-7    R stick
-8    +
-9    -
-10    B
-11    A
+| 番号 |    Switchボタン |
+| 0 |    Y |
+| 1 |    X |
+| 2 |    ZL |
+| 3 |    ZR |
+| 4 |    L |
+| 5 |    R |
+| 6 |    L stick |
+| 7 |    R stick |
+| 8 |    + |
+| 9 |    - |
+| 10 |    B |
+| 11 |    A |
 
 さあ、ポンコツコントローラに対して、まず皆さんは以下のことがやりたいはずです。どうすればできるでしょうか。考えてみましょう
 - 左右どちらにも動かない「止まっている」状態を作りたい
