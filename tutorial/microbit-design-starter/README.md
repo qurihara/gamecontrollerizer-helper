@@ -15,9 +15,9 @@ https://microbit.org/ja/guide/quick/
 ### micro:bitへのプログラムのダウンロード
 
 - 十字キー入力を行いたい場合は、以下のリンクを開いてください。  
-  - https://makecode.microbit.org/_CYE3rLfxk9ro
+  - https://ma  
 - アナログスティックによる入力を行いたい場合は、以下のリンクを開いてください。
-  - https://makecode.microbit.org/_CYE3rLfxk9ro
+  - https://makecode.microbit.org/_68LVuqfXrYkg
 
 「編集」を押してください。このサンプルプログラムを、自分のプログラムとしてコピーして編集できるようになります。
 自分のmicro:bitにダウンロードして、動作確認してみましょう。
