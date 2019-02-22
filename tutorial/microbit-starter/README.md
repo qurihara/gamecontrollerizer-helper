@@ -128,7 +128,7 @@ https://makecode.microbit.org/_LzJ7iJ4koTYR
 GameControllerizerは、操作指示が大量に送りつけられると、処理が間に合わなくなったり遅れたりしてしまいます。
 
 以下のコードを試してみてください。  
- http://xx.com  
+ https://makecode.microbit.org/_3fwAYmATwARX  
 いろいろな「ずっと」のループがあり、たくさんの情報を並列に処理していますが、常にたくさんの指示をGameControllerizerに送りつけているので、処理が間に合わず「もっさり」してしまっています。
 
 これに対処するには、簡単な方法としっかりやる方法の２通りがあります。
