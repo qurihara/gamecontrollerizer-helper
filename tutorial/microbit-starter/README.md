@@ -172,6 +172,9 @@ micro:bitが複数あれば、無線通信できるので手作りゲームコ�
 https://www.youtube.com/watch?v=KQ2IDCQli7A&feature=youtu.be  
 ラジコンカーのコントローラは、そのままマリオカートなどのコントローラとして活用できますね。送信側と受信側の２つのプログラムがありますが、送信側はそのままで、受信側を少し改造し、モーターへの指示の部分をGameControllerizerへの指示に変えれば、無線ゲームコントローラの出来上がりです！
 
+作例、送信側：https://makecode.microbit.org/_7M13P6JwbPtm  
+作例、受信側：https://makecode.microbit.org/_8P6EdV5qHLud  
+
 ### 波動拳コマンドを入力したい
 ドラゴンクエストのメニュー選択やストリートファイターの波動拳コマンドなどを扱いたい場合、「押し続ける/離す」ではなく「押す」を使うと、スッキリと記述できます。  
 作例： https://makecode.microbit.org/_Xo9arDK95dMP  
