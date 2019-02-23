@@ -186,7 +186,7 @@ https://www.youtube.com/watch?v=KQ2IDCQli7A&feature=youtu.be
 ### GameControllerizerの外部ボタンを使う
 GameControllerizer ver.1基板には、４つのボタン（B0,B1,B2,B3）がついています。micro:bitのボタンでは足りない場合にお使いいただけます。
 これらのボタンが押されたときの動作をプログラミングするためのブロックが用意されています。
-タイトル画面からゲームスタートまでのメニュー操作を行うことなどに使うと良いかもしれません。
+タイトル画面からゲームスタートまでのメニュー操作を行うことなどに使うと良いかもしれません。  
 作例： https://makecode.microbit.org/_dLD6sTUkh0w6  
 
 ### お役立ちリンク：
