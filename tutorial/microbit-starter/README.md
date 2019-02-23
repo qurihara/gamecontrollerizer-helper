@@ -175,6 +175,12 @@ https://www.youtube.com/watch?v=KQ2IDCQli7A&feature=youtu.be
 ### コマンド入力したい
 （作成中）  
 
+### GameControllerizerの外部ボタンを使う
+（作成中）  
+
+### 左右の切り替え
+（作成中）  
+
 ### お役立ちリンク：
 - x360ce:　windowsの「コントローラエミュレータ」で、ゲームパッドのボタンが押されてたことを視覚的に教えてくれるチェックソフトです。
   - https://www.x360ce.com/　
