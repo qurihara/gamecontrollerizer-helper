@@ -151,7 +151,7 @@ GameControllerizerは、操作指示が大量に送りつけられると、処�
 作例は割愛します。
 
 ### （2）micro:bitのLED表示は「遅い」
-micro:bitにはLEDがあるので、コントローラの状態表示させたくなりますよね。そこで以下の2つを比べてみてください。  
+micro:bitにはLEDがあるので、コントローラの状態表示をさせたくなりますよね。そこで以下の2つを比べてみてください。  
 - LED表示とGameControllerizer指示が直列につないであるもの https://makecode.microbit.org/_UDbUvw5rmM8V  
 - LED表示とGameControllerizer指示が別の「ずっと」の中にあるもの https://makecode.microbit.org/_KXueWi2rx5zv  
 
