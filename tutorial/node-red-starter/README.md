@@ -23,7 +23,7 @@
     * Windows 上で動く、好きなゲーム（ゲームパッドで動くもの）。特にこだわりがないようなら、ブラウザで動く https://yoh7686.github.io/SaveTheApple/index.html をご活用ください。
 
 
-★１ macでもプログラミングはできます。しかしmacは仕様上ゲームパッドを外付けキーボードとして扱うので、ゲームパッドをキーボード入力に変換するソフトウェア https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。
+★１ macでもなんとかなります。しかしmacは仕様上ゲームパッドを外付けキーボードとして扱うので、ゲームパッドをキーボード入力に変換するソフトウェア https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。
 
 ## 接続
 Raspberry piに接続されたGameControllerizer基板のUSB端子とPCのUSB端子をUSBケーブルで接続します。PCに電源が入っていれば、Raspberry piにも給電され、電源が入ります。Raspberry piの起動には1分くらいかかるので、待ちましょう。  
