@@ -2,18 +2,16 @@
 
 それではGameControllerizerをNode-REDで遊んでいきましょう。本チュートリアルは、少し発展的な内容です。ネットワーク設定、サーバクライアントアーキテクチャの知識、およびHTTPに関するプログラミングの知識が必要です。 あなたの好きなプログラミング言語で、ゲームコントローラのプログラミングをしていきます。身の回りのいろいろなものを、ゲームコントローラにしてしまいましょう！
 
-## 目次
-* 準備するもの
-* 接続
-* Node−REDについて
-* 最初のGameControllerizerサンプル
-* プログラミング環境を見てみよう
-* プログラムを見てみよう
-* ボタンをゲームに対応づけたい
-* もっと本格的なコントローラに！
-* 反応速度を上げたい
-* そして「そこそこ動く」バージョンの完成！
-* その他のトピック
+-目次
+   - 準備するもの
+   - 接続
+   - Node−REDについて
+   - 最初のGameControllerizerサンプル
+   - 詳しく見てみよう
+   - ボタンをゲームに対応づけたい
+   - いろいろなプログラミング言語とシステムから使う
+   - 反応速度を上げたい
+   - その他のトピック
 
 ## 準備するもの
 * パソコン
@@ -23,59 +21,85 @@
     * USBケーブル（PCとGameControllerizerをつなぐ。ゲームコントローラとしてPCに操作指示を送るためのもの。）
 * ソフトウェア
     * Windows 上で動く、好きなゲーム（ゲームパッドで動くもの）
-* ★１ macでもプログラミングはできます。しかしmacにはゲームパッドの概念がないので、ゲームパッドをキーボード入力に変換するもの https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。
+
+★１ macでもプログラミングはできます。しかしmacにはゲームパッドの概念がないので、ゲームパッドをキーボード入力に変換するもの https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。
 
 ## 接続
-Raspberry piに接続されたGameControllerizer基板のUSB端子とPCのUSB端子をUSBケーブルで接続します。PCに電源が入っていれば、Raspberry piにも給電され、電源が入ります。Raspberry piの起動には1分くらいかかるので、待ちましょう。
-PCのブラウザから、
-http://<Raspberry piのIPアドレス>:1880
+Raspberry piに接続されたGameControllerizer基板のUSB端子とPCのUSB端子をUSBケーブルで接続します。PCに電源が入っていれば、Raspberry piにも給電され、電源が入ります。Raspberry piの起動には1分くらいかかるので、待ちましょう。  
+PCのブラウザから、  
+http://<Raspberry piのIPアドレス>:1880  
 にアクセスしてください。Node-REDが表示されるはずです。
 また、PCでゲームを起動しておきましょう。これで準備完了です。
+
 注：ハッカソン等のイベントでは、Raspberry piで無線LANに接続し、IPアドレスが付与されるところまでは運営者がやっています。皆さんは運営者からIPアドレスを聞いてください。もしご自身で作業される場合は、Raspberry piにディスプレイとマウス、キーボードを接続し、無線LANの設定を行ってください。RaspbianのGUIデスクトップの右上の無線のアイコンから行います。
 
 ## Node-REDについて
-Node-REDのことが全くわからない方は、以下を見てください。しかしNode-REDを全く知らなくても、なんとかなります。
-https://nodered.jp/
+Node-REDのことが全くわからない方は、以下を見てください。しかしNode-REDを全く知らなくても、なんとかなります。  
+https://nodered.jp/  
 
-【参考：最初は読まなくて良い】 Node-REDは、Raspberry Pi 上に各種サーバを構築するために使われています。Raspberry Piに来た通信を、GameControllerizerへの指示へと変換します。具体的にはHTTPサーバ、WebSocketサーバなどを構築しています。
-最初のGameControllerizerサンプル
-ずばり、ブラウザで、
-http://<Raspberry piのIPアドレス>:1880/btn/hold/6
+###### **【参考：最初は読まなくて良い】**  Node-REDは、Raspberry Pi 上に各種サーバを構築するために使われています。Raspberry Piに来た通信を、GameControllerizerへの指示へと変換します。具体的にはHTTPサーバ、WebSocketサーバなどを構築しています。
+
+## 最初のGameControllerizerサンプル
+ずばり、ブラウザで、  
+http://<Raspberry piのIPアドレス>:1880/btn/hold/6  
 と入力してエンターキーを押してみましょう。ゲームの中で、キャラクターが右に動くはずです！つまり、Raspberry piの指定のURLにGETアクセスをすることで、ゲームコントローラを制御できるのです。
 つまり、HTTP GETアクセスが行えるプログラミング言語であれば、どんなシステムからでもネットワーク越しにGameControllerizerを制御できるのです。これぞゲームのIoTですね！
 
 ## 詳しく見てみよう
-Node-REDが準備している、ゲームコントローラ制御のためのURLの一覧は以下です。
-• /btn/push/[id]
-• /btn/hold/[id]
-• /btn/release/[id]
-• /btn/[id] ※push のシンタックスシュガー
-• /dpad/push/[id]
-• /dpad/hold/[id]
-• /dpad/[id] ※pushのシンタックスシュガー
-• /stk0/{x,y}/[value] ※valueは -127 ～127
-• /stk1/{x,y}/[value]
-• /input_config/{0,1} ※DPAD入力向き
-• /halt ※シャットダウン
-「http://<Raspberry piのIPアドレス>:1880」のあとに、これらをつなげてURLを完成させます。
-/btnはボタンの動作です。push（押してすぐ離す）, hold（押し続ける）, release（離す）の３種類があります。0から12でボタン番号を指定します。
-/dpadは十字キーの動作です。push（押してすぐ離す）, hold（押し続ける）の２種類があります。1から9までの数字で方向を指定し、5が十字キーをどこも押さない状態です。
-7（左上） 8（上　） 9（右上）
-4（左　） 5（中立） 6（右　）
-1（左下） 2（下　） 3（右下）
-/stk0と/stk1が、左右のアナログスティックです。x,y軸ともに-127~127を設定します。(0,0)がニュートラル位置です。
-/input_configは十字キーとアナログスティックの左右方向を入れ替える設定で、格闘ゲームなどでキャラクターの向きが変わったときに設定するとよいでしょう。左右別の操作を実装しないですみます。
-/haltは、raspberry piのシャットダウンを行うコマンドです。
-* ボタンをゲームに対応づけたい
-（コピーする）
+Node-REDが準備している、ゲームコントローラ制御のためのURLの一覧は以下です。  
+
+* /btn/push/[id]
+* /btn/hold/[id]
+* /btn/release/[id]
+* /btn/[id] ※push のシンタックスシュガー
+* /dpad/push/[id]
+* /dpad/hold/[id]
+* /dpad/[id] ※pushのシンタックスシュガー
+* /stk0/{x,y}/[value] ※valueは -127 ～127
+* /stk1/{x,y}/[value]
+* /input_config/{0,1} ※DPAD入力向き
+* /halt ※シャットダウン
+
+「http://<Raspberry piのIPアドレス>:1880」のあとに、これらをつなげてURLを完成させます。  
+/btnはボタンの動作です。push（押してすぐ離す）, hold（押し続ける）, release（離す）の３種類があります。0から12でボタン番号を指定します。  
+/dpadは十字キーの動作です。push（押してすぐ離す）, hold（押し続ける）の２種類があります。1から9までの数字で方向を指定し、5が十字キーをどこも押さない状態です。  
+
+7（左上） 8（上　） 9（右上）  
+4（左　） 5（中立） 6（右　）  
+1（左下） 2（下　） 3（右下）  
+
+/stk0と/stk1が、左右のアナログスティックです。x,y軸ともに-127~127を設定します。(0,0)がニュートラル位置です。  
+/input_configは十字キーとアナログスティックの左右方向を入れ替える設定で、格闘ゲームなどでキャラクターの向きが変わったときに設定するとよいでしょう。左右別の操作を実装しないですみます。  
+/haltは、raspberry piのシャットダウンを行うコマンドです。  
+
+## ボタンをゲームに対応づけたい
+ちょっと面倒だけど必ず考えなければならないのが、ボタンの対応づけです。
+GameControllerizerは0から11まで番号のついたボタンを扱えますが、何番のボタンがゲーム機のどのボタンに対応するかは、ゲーム機ごとに違います。以下によく用いられるxboxとNintendo Switchの対応表を書きますので、参考にしてください。わからなくても実際にゲーム機とつないで、一つ一つボタンを試してみれば、調べることができますね。
+
+| ボタン番号 |    xboxボタン | Switchボタン |
+----|----|----
+| 0 |    left bumper | Y |
+| 1 |    right bumper | X |
+| 2 |    left trigger | ZL |
+| 3 |    right trigger | ZR |
+| 4 |    back | L |
+| 5 |    start | R |
+| 6 |    left stick | L stick |
+| 7 |    right stick | R stick |
+| 8 |    X | + |
+| 9 |    A | - |
+| 10 |    B | B |
+| 11 |    Y | A |
 
 ## いろいろなプログラミング言語とシステムから使う
 ### Processing
 
-Processingには、HTTPリクエストのライブラリがあります。
-https://github.com/runemadsen/HTTP-Requests-for-Processing/releases
+Processingには、HTTPリクエストのライブラリがあります。  
+https://github.com/runemadsen/HTTP-Requests-for-Processing/releases  
 でライブラリをダウンロードし、適切に配置します。（編集しているプログラムのエディタに直接ドラッグアンドドロップすればOKだと思います。あるいは、processingのライブラリフォルダをしらべてそこにフォルダごとおきます。）
-以下のようなコードでGameControllerizerを制御できます。
+
+以下のようなコードでGameControllerizerを制御できます。  
+```
 import http.requests.*;
 public void setup() 
 {
@@ -83,15 +107,21 @@ public void setup()
     get.send();
     //println("Reponse Content: " + get.getContent());
 }
+```
 
 ### Sony MESH
 Sony MESHのSDKを用いると、独自のプログラミングの部品（タグ）を使うことができます。ここに、信号が入力されると指定のHTTPアドレスにGETアクセスするタグのコードが置いてあります。これを用いることで、Sony MESHの様々なタグをブロックプログラミングで組み合わせて、ゲームコントローラとして用いることができるようになります。
 
-### M5Stack
-M5Stackはクラウド上からpythonによってプログラミングが可能です。
-http://cloud.m5stack.com/
-以下のようなプログラムにより、ボタンを押すとGameControllerizerに通信するプログラムが書けます。
+```
+{"formatVersion":"1.0","tagData":{"name":"HttpGet","icon":"./res/x2/default_icon.png","description":"just send httpGET","functions":[{"id":"function_0","name":"New Function","connector":{"inputs":[{"label":""}],"outputs":[]},"properties":[{"name":"Http Address","referenceName":"url","type":"string","defaultValue":"192.168.11."},{"name":"Topic","referenceName":"topic","type":"string","defaultValue":"hado"}],"extension":{"initialize":"return {\n    runtimeValues : {\n        v : 0\n    },\t\n    resultType : \"continue\"\n};\n","receive":"return {\n\truntimeValues : runtimeValues,\n\tresultType : \"continue\"\n};","execute":"var local_uri = 'http://' + properties.url + ':1880/' + properties.topic;\n\nvar data = \"abc\";\n\najax({\n\turl : local_uri,\n\tdata : data,\n\ttype : 'GET',\n\tcontentType: 'application/text',\n\ttimeout : 250,\n\tsuccess : function (d) {\n\t\tlog(\"Http send success\");\n        callbackSuccess( {\n            resultType : \"continue\",\n            runtimeValues : runtimeValues\n        });\t\t\n\t},\n\terror : function (req, e) {\n\t\tlog(\"Error : \" + e);\n        callbackSuccess( {\n            resultType : \"continue\",\n            runtimeValues : runtimeValues\n        });\t\t\n\t}\n});\n\nreturn {\n    runtimeValues : runtimeValues,\n    resultType : \"pause\"\n};","result":""}}]}}
+```
 
+### M5Stack
+M5Stackはクラウド上からpythonによってプログラミングが可能です。  
+http://cloud.m5stack.com/  
+以下のようなプログラムにより、ボタンを押すとGameControllerizerに通信するプログラムが書けます。  
+
+```
 from m5stack import lcd, buttonA, buttonB, buttonC
 import urequests
 server = 'http://xxxxx:1880'
@@ -111,13 +141,16 @@ def on_Released():
   
 buttonA.wasPressed(on_AwasPressed)
 buttonA.wasReleased(on_Released)
+```
 
 ## 反応速度を上げたい
 無線ネットワーク越しにGameControllerizerを制御すると、どうしても遅延が生まれます。だいたい10~50msくらいでしょうか。微々たる時間ですが、ゲームをしている人間にはこの遅延は知覚できます。遅延があってもそれが「もっさりしてるな」という感覚にとどまり、せいぜいゲーム操作の難易度が多少上がるだけであれば、それは慣れで克服できたり、新しい楽しさにつながる可能性を持つものですが、たとえば音楽ゲームなどのように、遅延が無いことがゲームの喜びに本質的に重要な役割は果たす場合は、対策が必要です。
-一般的な対策としては、
-・空いているネットワークを使う
-・ハードウェア入力を扱う場合、Raspberry piのUSB端子やGPIO端子に直接有線接続して処理する
-・Raspberry piをよりハイスピードなコンピュータに置き換える
+
+一般的な対策としては、  
+* 空いているネットワークを使う
+* ハードウェア入力を扱う場合、Raspberry piのUSB端子やGPIO端子に直接有線接続して処理する
+* Raspberry piをよりハイスピードなコンピュータに置き換える
+
 などが考えられます。
 
 ## その他のトピック
@@ -126,10 +159,10 @@ GameControllerizer ver.1基板には、４つのボタン（B0,B1,B2,B3）がつ
 （図を貼る）
 
 ### GcScannerについて
-http://<Raspberry piのIPアドレス>:8080
+http://<Raspberry piのIPアドレス>:8080  
 にFireFoxブラウザからアクセスしてください。すると、そのPCに接続されているUSBゲームパッドの入力をそのままRaspberry Piに伝送することができます。通常のゲームコントローラ操作に加えてなにか補助的な入力システムを作りたいときなどにご活用ください。
 
-【参考：最初は読まなくて良い】 GameControllerzerは、現在サポート外としていますが、ゲームパッドだけでなく、マウスとキーボードによる入力も扱う設計となっています。GcScannerでも、チェックボックスをクリックすることにより、ゲームパッド、マウス、キーボードの入力をRaspberry Pi上のNode-REDに伝えることができます。また、Node-RED側のプログラムを書き換えれば、キーボード入力をゲームパッド入力に変換するなども可能です。
+###### **【参考：最初は読まなくて良い】**  【参考：最初は読まなくて良い】 GameControllerzerは、現在サポート外としていますが、ゲームパッドだけでなく、マウスとキーボードによる入力も扱う設計となっています。GcScannerでも、チェックボックスをクリックすることにより、ゲームパッド、マウス、キーボードの入力をRaspberry Pi上のNode-REDに伝えることができます。また、Node-RED側のプログラムを書き換えれば、キーボード入力をゲームパッド入力に変換するなども可能です。
 
 ### お役立ちリンク：
 * x360ce:　windowsの「コントローラエミュレータ」で、ゲームパッドのボタンが押されてたことを視覚的に教えてくれるチェックソフトです。
