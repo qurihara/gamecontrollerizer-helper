@@ -41,9 +41,14 @@ https://nodered.jp/
 
 ## 最初のGameControllerizerサンプル
 ずばり、ブラウザで、  
+
 http://<Raspberry piのIPアドレス>:1880/btn/hold/6  
-と入力してエンターキーを押してみましょう。ゲームの中で、キャラクターが右に動くはずです！つまり、Raspberry piの指定のURLにGETアクセスをすることで、ゲームコントローラを制御できるのです。
-つまり、HTTP GETアクセスが行えるプログラミング言語であれば、どんなシステムからでもネットワーク越しにGameControllerizerを制御できるのです。これぞゲームのIoTですね！
+
+と入力してエンターキーを押してみましょう。ゲームの中で、キャラクターが右に動くはずです！
+しかも、同時に別のPCの複数のブラウザからアクセスできます。もうこれだけで、普通のゲームが「みんなで協力したり邪魔しながら楽しむゲーム」に早変わりします。
+
+さて、これはRaspberry piの指定のURLにGETリクエストを送ることで、ゲームコントローラを制御できるということを意味します。
+HTTP GETリクエストが行えるプログラミング言語であれば、どんなシステムからでもネットワーク越しにGameControllerizerを制御できるのです。これぞゲームのIoTですね！
 
 ## 詳しく見てみよう
 Node-REDが準備している、ゲームコントローラ制御のためのURLの一覧は以下です。  
@@ -110,7 +115,7 @@ public void setup()
 ```
 
 ### Sony MESH
-Sony MESHのSDKを用いると、独自のプログラミングの部品（タグ）を使うことができます。ここに、信号が入力されると指定のHTTPアドレスにGETアクセスするタグのコードが置いてあります。これを用いることで、Sony MESHの様々なタグをブロックプログラミングで組み合わせて、ゲームコントローラとして用いることができるようになります。
+Sony MESHのSDKを用いると、独自のプログラミングの部品（タグ）を使うことができます。以下に信号が入力されると指定のHTTPアドレスにGETアクセスするタグのコードを示します。これを用いることで、Sony MESHの様々なタグをブロックプログラミングで組み合わせて、ゲームコントローラとして用いることができるようになります。
 
 ```
 {"formatVersion":"1.0","tagData":{"name":"HttpGet","icon":"./res/x2/default_icon.png","description":"just send httpGET","functions":[{"id":"function_0","name":"New Function","connector":{"inputs":[{"label":""}],"outputs":[]},"properties":[{"name":"Http Address","referenceName":"url","type":"string","defaultValue":"192.168.11."},{"name":"Topic","referenceName":"topic","type":"string","defaultValue":"hado"}],"extension":{"initialize":"return {\n    runtimeValues : {\n        v : 0\n    },\t\n    resultType : \"continue\"\n};\n","receive":"return {\n\truntimeValues : runtimeValues,\n\tresultType : \"continue\"\n};","execute":"var local_uri = 'http://' + properties.url + ':1880/' + properties.topic;\n\nvar data = \"abc\";\n\najax({\n\turl : local_uri,\n\tdata : data,\n\ttype : 'GET',\n\tcontentType: 'application/text',\n\ttimeout : 250,\n\tsuccess : function (d) {\n\t\tlog(\"Http send success\");\n        callbackSuccess( {\n            resultType : \"continue\",\n            runtimeValues : runtimeValues\n        });\t\t\n\t},\n\terror : function (req, e) {\n\t\tlog(\"Error : \" + e);\n        callbackSuccess( {\n            resultType : \"continue\",\n            runtimeValues : runtimeValues\n        });\t\t\n\t}\n});\n\nreturn {\n    runtimeValues : runtimeValues,\n    resultType : \"pause\"\n};","result":""}}]}}
