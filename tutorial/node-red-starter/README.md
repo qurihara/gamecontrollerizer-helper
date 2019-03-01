@@ -15,7 +15,7 @@
 
 ## 準備するもの
 * パソコン
-    * Windows PC ★1 （webブラウザと、ゲームが動くマシンとして使います。）
+    * Windows PC ★1 （webブラウザと、ゲームが動くマシンとして使います。プログラミングする場合は、好みのプログラミング環境をご準備ください。）
 * ハードウェア
     * Raspberry pi zero wに接続された状態のGameControllerizer基板
     * USBケーブル（PCとGameControllerizerをつなぐ。ゲームコントローラとしてPCに操作指示を送るためのもの。）
