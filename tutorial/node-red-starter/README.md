@@ -20,7 +20,8 @@
     * Raspberry pi zero wに接続された状態のGameControllerizer基板
     * USBケーブル（PCとGameControllerizerをつなぐ。ゲームコントローラとしてPCに操作指示を送るためのもの。）
 * ソフトウェア
-    * Windows 上で動く、好きなゲーム（ゲームパッドで動くもの）
+    * Windows 上で動く、好きなゲーム（ゲームパッドで動くもの）。特にこだわりがないようなら、ブラウザで動く https://yoh7686.github.io/SaveTheApple/index.html をご活用ください。
+
 
 ★１ macでもプログラミングはできます。しかしmacにはゲームパッドの概念がないので、ゲームパッドをキーボード入力に変換するもの https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。
 
