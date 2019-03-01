@@ -121,7 +121,7 @@ buttonA.wasReleased(on_Released)
 などが考えられます。
 
 ## その他のトピック
-###GameControllerizerの外部ボタンを使う
+### GameControllerizerの外部ボタンを使う
 GameControllerizer ver.1基板には、４つのボタン（B0,B1,B2,B3）がついています。これらのボタンが押されたときの動作をプログラミングするためフローがNode-REDに用意されています。 タイトル画面からゲームスタートまでのメニュー操作を行うことなどに使うと良いかもしれません。
 （図を貼る）
 
