@@ -88,20 +88,20 @@ Node-REDが準備している、ゲームコントローラ制御のためのURL
 ちょっと面倒だけど必ず考えなければならないのが、ボタンの対応づけです。
 GameControllerizerは0から11まで番号のついたボタンを扱えますが、何番のボタンがゲーム機のどのボタンに対応するかは、ゲーム機ごとに違います。以下によく用いられるxboxとNintendo Switchの対応表を書きますので、参考にしてください。わからなくても実際にゲーム機とつないで、一つ一つボタンを試してみれば、調べることができますね。
 
-| ボタン番号 |    xboxボタン | Switchボタン |
-----|----|----
-| 0 |    left bumper | Y |
-| 1 |    right bumper | X |
-| 2 |    left trigger | ZL |
-| 3 |    right trigger | ZR |
-| 4 |    back | L |
-| 5 |    start | R |
-| 6 |    left stick | L stick |
-| 7 |    right stick | R stick |
-| 8 |    X | + |
-| 9 |    A | - |
-| 10 |    B | B |
-| 11 |    Y | A |
+| ボタン番号 |    xboxボタン | Switchボタン（XFPSコンバータ使用時） | ファミコン・スーパーファミコン・ゲームボーイボタン（レトロフリーク使用時）
+----|----|----|----
+| 0 |    left bumper | Y | - |
+| 1 |    right bumper | X | - |
+| 2 |    left trigger | ZL | L |
+| 3 |    right trigger | ZR | R |
+| 4 |    back | L | start |
+| 5 |    start | R | select |
+| 6 |    left stick | L stick | game menu |
+| 7 |    right stick | R stick | main menu |
+| 8 |    X | + | A |
+| 9 |    A | - | B |
+| 10 |    B | B | X |
+| 11 |    Y | A | Y |
 
 ## いろいろなプログラミング言語とシステムから使う
 ### Processing
