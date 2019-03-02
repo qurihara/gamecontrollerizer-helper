@@ -105,6 +105,16 @@ GameControllerizerは0から11まで番号のついたボタンを扱えます�
 | 11 |    Y | A | Y |
 
 ## いろいろなプログラミング言語とシステムから使う
+### JavaScript
+
+jQueryを使えば１行ですね！
+
+```
+$.get("http://xxxx:1880/dpad/6");
+```
+
+参考：http://semooh.jp/jquery/api/ajax/jQuery.get/+url,+data,+callback+/
+
 ### Processing
 
 Processingには、HTTPリクエストのライブラリがあります。  
