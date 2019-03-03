@@ -41,6 +41,7 @@ PC --> USB --> micro:bit --> micro:bit Groveシールド --> Groveコネクタ�
 micro:bitのプログラミングやダウンロードの仕方が全くわからない方は、以下を見てください。  
 https://microbit.org/ja/guide/quick/  
 以下、micro:bitのプログラミングとダウンロードの方法は最低限理解した前提で進めます。  
+（micro:bitのプログラミングは、スマホやタブレットでもできます。その場合は、無線を使ってプログラムのダウンロードをします。）  
 
 ## 最初のGameControllerizerサンプル
 以下のリンクを開いてください。    
