@@ -30,7 +30,7 @@
 GameControllerizer基板のUSB端子とPCのUSB端子をUSBケーブルで接続します。
 ２つあるRaspberry pi上のUSB端子に繋がないよう、注意してください。
 すると、PCに電源が入っていれば、Raspberry piにも給電され、電源が入ります。Raspberry piの起動には1分くらいかかるので、待ちましょう。  
-Raspberry piに接続されたGameControllerizer基板のUSB端子とPCのUSB端子をUSBケーブルで接続します。PCに電源が入っていれば、Raspberry piにも給電され、電源が入ります。Raspberry piの起動には1分くらいかかるので、待ちましょう。  
+
 PCのブラウザから、  
 
 http://<Raspberry piのIPアドレス>:1880  
