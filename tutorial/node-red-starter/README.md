@@ -155,7 +155,6 @@ server = 'http://xxxxx:1880'
 lcd.clear()
 lcd.setCursor(0, 0)
 lcd.setColor(lcd.WHITE)
-lcd.print("Ready.\n")
 lcd.print(server)
 def on_AwasPressed():
   r = urequests.get(server + '/dpad/hold/6')
