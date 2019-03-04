@@ -36,7 +36,7 @@
 ## 接続
 まず図のようにハードウェアを接続します。  
 
-PC --> USB --> micro:bit --> micro:bit Groveシールド --> Groveコネクタケーブル（P0/P14へ接続） --> GameControllerizer基板 --> USBケーブル --> PC
+PC --> USBケーブル --> micro:bit --> micro:bit Groveシールド --> Groveコネクタケーブル（P0/P14へ接続） --> GameControllerizer基板 --> USBケーブル --> PC
 
 ## micro:bitについて
 micro:bitのプログラミングやダウンロードの仕方が全くわからない方は、以下を見てください。  
