@@ -14,16 +14,17 @@
    - その他のトピック
 
 ## 準備するもの
-* パソコン
-    * Windows PC ★1 （webブラウザと、ゲームが動くマシンとして使います。プログラミングする場合は、好みのプログラミング環境をご準備ください。）
-* ハードウェア
-    * Raspberry pi zero wに接続された状態のGameControllerizer基板
-    * USBケーブル（PCとGameControllerizerをつなぐ。ゲームコントローラとしてPCに操作指示を送るためのもの。）
-* ソフトウェア
-    * Windows 上で動く、好きなゲーム（ゲームパッドで動くもの）。特にこだわりがないようなら、ブラウザで動く https://yoh7686.github.io/SaveTheApple/index.html をご活用ください。アナログスティックの左右入力を用いるゲームです。
-
-
-★１ macでもなんとかなります。しかしmacは仕様上ゲームパッドを外付けキーボードとして扱うので、ゲームパッドをキーボード入力に変換するソフトウェア https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。
+- パソコン
+   - 【推奨】Windows PC
+      - パソコンは、webブラウザ上でのNode-RED操作用とゲーム動作マシンの２つの役割に使います。プログラミングする場合は、好みのプログラミング環境をご準備ください。
+      - macでもなんとかなります。しかしmacは仕様上ゲームパッドを外付けキーボードとして扱うので、ゲームパッドをキーボード入力に変換するソフトウェア https://yukkurigames.com/enjoyable/ を用いるか、ゲーム動作マシンとしてmac以外の別のゲーム機を用意してください。       
+- ハードウェア
+   - Raspberry pi zero wに接続された状態のGameControllerizer基板
+   - USBケーブル（PCとGameControllerizerをつなぐ。ゲームコントローラとしてPCに操作指示を送るためのもの。）
+- ゲームとして、以下のどれかを用意してください。
+    - 用意したパソコン上で動く、ゲームパッドで操作するお好みのゲーム
+    - すぐ試したいということであれば、ブラウザで動くゲームとして https://yoh7686.github.io/SaveTheApple/index.html をご活用ください。アナログスティックの左右入力のみを用いるゲームです。
+    - あるいは、動作チェックをしたいだけなら、ブラウザでゲームパッドの動作確認ができる https://html5gamepad.com/ をご活用ください。  
 
 ## 接続
 Raspberry piに接続されたGameControllerizer基板のUSB端子とPCのUSB端子をUSBケーブルで接続します。PCに電源が入っていれば、Raspberry piにも給電され、電源が入ります。Raspberry piの起動には1分くらいかかるので、待ちましょう。  
