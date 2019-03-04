@@ -146,10 +146,10 @@ Sony MESHのSDKを用いると、独自のプログラミングの部品（タ�
 ### M5Stack
 M5Stackはクラウド上からpythonによってプログラミングが可能です。  
 http://cloud.m5stack.com/  
-以下のようなプログラムにより、ボタンを押すとGameControllerizerに通信するプログラムが書けます。  
+以下のようなプログラムにより、Aボタンを押すとGameControllerizerに通信するプログラムが書けます。  
 
 ```
-from m5stack import lcd, buttonA, buttonB, buttonC
+from m5stack import lcd, buttonA
 import urequests
 server = 'http://xxxxx:1880'
 lcd.clear()
@@ -158,13 +158,9 @@ lcd.setColor(lcd.WHITE)
 lcd.print("Ready.\n")
 lcd.print(server)
 def on_AwasPressed():
-  lcd.print('Button A was Pressed.')
   r = urequests.get(server + '/dpad/hold/6')
-  lcd.print(r.text + "\n")
 def on_Released():
-  lcd.print('Released.')
-  r = urequests.get(server + '/get?button=none')
-  lcd.print(r.text + "\n")
+  r = urequests.get(server + '/dpad/hold/5')
   
 buttonA.wasPressed(on_AwasPressed)
 buttonA.wasReleased(on_Released)
