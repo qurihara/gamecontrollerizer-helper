@@ -26,7 +26,7 @@
   - USBケーブル（PCとmicro:bitをつなぐ。micro:bitに給電し、プログラムを書き込むためのもの。）  
   - USBケーブル（PCとGameControllerizerをつなぐ。ゲームコントローラとしてPCに操作指示を送るためのもの。）  
 - ソフトウェア    
-  - Windows 上で動く、好きなゲーム（ゲームパッドで動くもの）。特にこだわりがないようなら、ブラウザで動く https://yoh7686.github.io/SaveTheApple/index.html をご活用ください。
+  - Windows 上で動く、好きなゲーム（ゲームパッドで動くもの）。特にこだわりがないようなら、ブラウザで動く https://yoh7686.github.io/SaveTheApple/index.html をご活用ください。アナログスティックの左右入力を用いるゲームです。
   
  
 ★１ macでもプログラミングはできます。しかしmacは仕様上ゲームパッドを外付けキーボードとして扱うので、ゲームパッドをキーボード入力に変換するソフトウェア https://yukkurigames.com/enjoyable/ を用いるか、別のゲーム機を用意してください。  
