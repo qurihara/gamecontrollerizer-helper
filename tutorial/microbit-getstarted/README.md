@@ -22,7 +22,7 @@
   - USBケーブル（PCとmicro:bitをつなぐ。micro:bitに給電し、プログラムを書き込むためのもの。）  
   - USBケーブル（PCとGameControllerizerをつなぐ。ゲームコントローラとしてPCに操作指示を送るためのもの。）  
 - ゲーム
-    - パソコン上のブラウザで動くゲームとして https://yoh7686.github.io/SaveTheApple/index.html を開いてください。アナログスティックの左右入力のみを用いるゲームです。
+    - パソコン上のブラウザで動くゲームとして https://yoh7686.github.io/SpaceReflection/ を開いてください。アナログスティックとワンボタンのみを用いるゲームです。
 
 ## 接続
 まず図のようにハードウェアを接続します。  
