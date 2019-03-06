@@ -1,4 +1,4 @@
-# チュートリアル：micro:bitで始めるGameControllerizer ~とりあえず動かしたい！編
+# チュートリアル：【Windows/Mac対応】micro:bitで始めるGameControllerizer ~とりあえず動かしたい！編
 
 それではGameControllerizerをmicro:bitで遊んでいきましょう。本チュートリアルは、とりあえずGameControllerizerを動かすところまで最速で進めます。
 
@@ -7,13 +7,13 @@
   - 接続
   - micro:bitについて
   - 最初のGameControllerizerサンプル
+  - 次のステップ
 
 ## 準備するもの
 - パソコン  
-  - 【推奨】USBコネクタが２つ以上あるWindows PC
+  - 【推奨】USBコネクタが２つ以上あるWindowsもしくはMac
     - パソコンは、プログラミング用とゲーム動作マシンの２つの役割に使います。
     - USBコネクタが１つしかないPCの場合、micro:bitにプログラムを書き込みたいときと、ゲームコントローラとして遊びたいときでUSBケーブルを選んで抜き差しすれば大丈夫です。
-    - macでもプログラミングはできます。しかしmacは仕様上ゲームパッドを外付けキーボードとして扱うので、ゲームパッドをキーボード入力に変換するソフトウェア https://yukkurigames.com/enjoyable/ を用いるか、ゲーム動作マシンとしてmac以外の別のゲーム機を用意してください。       
 - ハードウェア
   - GameControllerizer基板  
   - Groveコネクタケーブル  
@@ -42,6 +42,10 @@ https://makecode.microbit.org/_LzJ7iJ4koTYR
 
 「編集」を押してください。このサンプルプログラムを、自分のプログラムとしてコピーして編集できるようになります。
 自分のmicro:bitにダウンロードして、動作確認してみましょう。micro:bitを左右に傾けると、ゲーム内でキャラクタも動きます。
+That's it!
 
+## 次のステップ
 
+チュートリアル：micro:bitで始めるGameControllerizer ~そこそこコントローラ制作編  
+https://github.com/qurihara/gamecontrollerizer-helper/tree/gh-pages/tutorial/microbit-starter
 
