@@ -53,9 +53,9 @@ https://nodered.jp/
 ## 最初のGameControllerizerサンプル
 ずばり、ブラウザで、  
 
-http://<Raspberry piのIPアドレス>:1880/stk0/x/127 
+http://<Raspberry piのIPアドレス>:1880/stk0/x/127  
 （アナログスティックゲームの場合）  
-あるいは
+あるいは  
 http://<Raspberry piのIPアドレス>:1880/btn/hold/6  
 （十字キーで操作するゲームの場合）  
 
